@@ -1,11 +1,12 @@
 import random
 import prompt
+import math
 
 
 def welcome_user():
     name = prompt.string('May I have your name? \n')
     print(f'Hello, {name}!')
-    print('What is the result of the expression?')
+    print('Find the greatest common divisor of given numbers.')
     if play_even_game() == 3:
         print(f'Congratulations, {name}!')
     else:
@@ -17,22 +18,16 @@ def play_even_game():
     while i != 3:
         first = random.randint(0, 100)
         second = random.randint(0, 100)
-        operation = random.choice(['+','-','*'])
-        print(f'Question: {first} {operation} {second}')
+        print(f'Question: {first} {second}')
         answer = prompt.string('Your answer:\n')
-        if int(answer) == calc(first,second,operation):
+        if int(answer) == nod(first,second):
             print('Correct!')
             i += 1
         else:
-            print(f"'{answer}' is wrong answer ;(. Correct answer was '{calc(first,second,operation)}'.")
+            print(f"'{answer}' is wrong answer ;(. Correct answer was '{nod(first,second)}'.")
     return i
 
 
-def calc(first,second,operation):
-    if operation == '+':
-        return first + second
-    if operation == '-':
-        return first - second
-    if operation == '*':
-        return first * second
-
+def nod(first,second):
+    result = math.gcd(first,second)
+    return result
